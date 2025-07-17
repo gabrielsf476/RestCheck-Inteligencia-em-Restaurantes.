@@ -27,3 +27,4 @@ def prever(df, modelo_path="modelo.pkl"):
     X_pred = X_pred.reindex(columns=modelo.feature_names_in_, fill_value=0)
     y_pred = modelo.predict(X_pred)
     return pd.Series(y_pred.astype(int), name="quantidade_prevista")
+
