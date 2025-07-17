@@ -1,11 +1,14 @@
 import streamlit as st
 import pandas as pd
-import ingestao
-import modelo
-import pre_processamento
-import visualizacoes
-import exportacao
+import os
 
+from restaurante_analytics import (
+    ingestao,
+    pre_processamento,
+    modelo,
+    visualizacoes,
+    exportacao
+)
 
 st.set_page_config(page_title="Restaurante Analytics", layout="wide")
 st.title("📊 Painel de Inteligência de Pedidos")
@@ -14,7 +17,6 @@ arquivo = st.sidebar.file_uploader("📁 Envie o arquivo pedidos.csv", type=["cs
 
 if arquivo:
     df = ingestao.carregar_csv(arquivo)
-    st.write("🔍 Colunas detectadas:", df.columns.tolist())
     if not ingestao.validar_colunas(df):
         st.error("❌ Arquivo inválido: faltando colunas obrigatórias como data, prato e quantidade.")
     else:
@@ -25,9 +27,14 @@ if arquivo:
             _, rmse, r2 = modelo.treinar(df)
             st.sidebar.success(f"✅ Modelo treinado! RMSE: {rmse:.2f} | R²: {r2:.2f}")
 
-        y_pred = modelo.prever(df)
-        df_previsto = df.copy()
-        df_previsto["quantidade_prevista"] = y_pred
+        if os.path.exists("modelo.pkl"):
+            y_pred = modelo.prever(df)
+            df_previsto = df.copy()
+            df_previsto["quantidade_prevista"] = y_pred
+        else:
+            st.warning("⚠️ Modelo não encontrado. Treine primeiro.")
+            df_previsto = df.copy()
+            df_previsto["quantidade_prevista"] = None
 
         aba = st.sidebar.radio("📌 Navegar", [
             "📋 Dados Reais",
