@@ -2,13 +2,12 @@ import streamlit as st
 import pandas as pd
 import os
 
-from restaurante_analytics import (
-    ingestao,
-    pre_processamento,
-    modelo,
-    visualizacoes,
-    exportacao
-)
+import ingestao
+import modelo
+import pre_processamento
+import visualizacoes
+import exportacao
+
 
 st.set_page_config(page_title="Restaurante Analytics", layout="wide")
 st.title("📊 Painel de Inteligência de Pedidos")
