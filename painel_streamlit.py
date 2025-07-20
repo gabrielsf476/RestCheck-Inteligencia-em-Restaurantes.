@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import os
 
-import
 import ingestao
 import pre_processamento
 import modelo
