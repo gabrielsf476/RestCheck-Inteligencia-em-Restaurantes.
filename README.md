@@ -1,1 +1,1 @@
-# restaurant-analytics
+# restcheck_core
