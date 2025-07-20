@@ -2,13 +2,12 @@ import streamlit as st
 import pandas as pd
 import os
 
-from restcheck_core import (
-    ingestao,
-    pre_processamento,
-    modelo,
-    visualizacoes,
-    exportacao
-)
+import ingestao
+import pre_processamento
+import modelo
+import visualizacoes
+import exportacao
+
 
 st.set_page_config(page_title="RestCheck · Inteligência em Pedidos", layout="wide")
 st.title("🍽️ RestCheck — Inteligência para Restaurantes")
