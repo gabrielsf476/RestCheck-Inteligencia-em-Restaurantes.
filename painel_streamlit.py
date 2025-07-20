@@ -21,6 +21,34 @@ st.markdown("""
 st.image("logo-restcheck.png", width=120)
 st.title("🍽️ RestCheck — Inteligência para Restaurantes")
 
+import io
+
+st.sidebar.markdown("### 🔍 Validador de CSV")
+
+arquivo = None
+df = None
+
+arquivo = st.sidebar.file_uploader("📁 Envie seu arquivo (.csv)", type=["csv"], key="upload_validar")
+
+if arquivo and not usar_demo:
+    try:
+        conteudo = arquivo.read().decode("utf-8")
+        df_raw = pd.read_csv(io.StringIO(conteudo))
+
+        colunas_obrigatorias = {'data', 'prato', 'quantidade'}
+        colunas_encontradas = set(df_raw.columns.str.lower().str.strip())
+        faltando = colunas_obrigatorias - colunas_encontradas
+
+        if faltando:
+            st.error(f"❌ Arquivo inválido. Faltam as colunas: {', '.join(faltando)}")
+            st.stop()
+        else:
+            st.sidebar.success("✅ Estrutura válida!")
+            df = df_raw.copy()
+    except Exception as e:
+        st.error(f"❌ Erro ao validar CSV: {e}")
+        st.stop()
+
 # 🎨 Barra lateral refinada
 st.sidebar.title("🧠 RestCheck")
 st.sidebar.caption("Previsão de pedidos com IA")
