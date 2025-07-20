@@ -42,6 +42,7 @@ if arquivo:
             "📎 Gráficos",
             "📥 Exportar"
         ])
+st.sidebar.info("❓ Precisa de ajuda? Visite restcheck.com.br/ajuda")
 
         if aba == "📋 Dados Reais":
             st.subheader("📋 Tabela dos dados reais")
