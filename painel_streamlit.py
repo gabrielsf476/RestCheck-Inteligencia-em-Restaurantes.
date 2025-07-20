@@ -16,7 +16,6 @@ st.title("🍽️ RestCheck — Inteligência para Restaurantes")
 st.sidebar.title("🧠 RestCheck")
 st.sidebar.caption("Inteligência para Restaurantes")
 
-arquivo = st.sidebar.file_uploader("📁 Envie seu arquivo de pedidos (.csv)", type=["csv"])
 st.sidebar.markdown("### 🧪 Modo de teste")
 usar_demo = st.sidebar.checkbox("🔍 Usar dados de demonstração")
 
