@@ -9,7 +9,7 @@ import visualizacoes
 import exportacao
 
 
-st.set_page_config(page_title="Restaurante Analytics", layout="wide")
+st.set_page_config(page_title="restcheck_core", layout="wide")
 st.title("📊 Painel de Inteligência de Pedidos")
 
 arquivo = st.sidebar.file_uploader("📁 Envie o arquivo pedidos.csv", type=["csv"])
