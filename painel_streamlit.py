@@ -43,7 +43,6 @@ if arquivo:
             "📥 Exportar"
         ])
 st.sidebar.info("❓ Precisa de ajuda? Visite restcheck.com.br/ajuda")
-
         if aba == "📋 Dados Reais":
             st.subheader("📋 Tabela dos dados reais")
             cols = ['data_formatada', 'dia_semana', 'prato', 'quantidade', 'valor_total']
